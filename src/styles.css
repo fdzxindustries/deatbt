@@ -1,0 +1,103 @@
+:root {
+  --void: #050510;
+  --surface: #0e0e26;
+  --line: #24244a;
+  --text: #e9e8ff;
+  --muted: #9a99c4;
+  --violet: #7c5cff;
+  --aqua: #35e0c2;
+  --gutter: clamp(20px, 5vw, 64px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--text);
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  line-height: 1.6;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--aqua); outline-offset: 3px; }
+
+.skip { position: absolute; left: -999px; top: 8px; background: var(--aqua); color: var(--void); padding: 8px 14px; z-index: 20; }
+.skip:focus { left: 8px; }
+
+/* Navigasi */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px var(--gutter);
+  background: linear-gradient(var(--void), transparent);
+}
+.brand { font-family: "Syne", sans-serif; font-weight: 800; font-size: 1.25rem; text-decoration: none; }
+.nav nav { display: flex; gap: clamp(14px, 3vw, 32px); }
+.nav nav a { text-decoration: none; color: var(--muted); font-size: .95rem; transition: color .2s; }
+.nav nav a:hover { color: var(--text); }
+
+/* Hero */
+.hero { position: relative; min-height: 100svh; display: flex; align-items: center; padding: 0 var(--gutter); overflow: hidden; }
+#scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-text { position: relative; max-width: 620px; pointer-events: none; }
+.hero-text > * { pointer-events: auto; }
+.role { color: var(--aqua); margin: 0 0 18px; }
+h1 {
+  font-family: "Syne", sans-serif; font-weight: 800;
+  font-size: clamp(3.4rem, 12vw, 8.5rem); line-height: .92; letter-spacing: -.03em;
+  margin: 0 0 24px;
+}
+.lead { color: var(--muted); max-width: 46ch; margin: 0 0 32px; }
+
+.btn {
+  display: inline-block; padding: 13px 26px; border-radius: 999px;
+  background: var(--violet); color: #fff; font-weight: 600; text-decoration: none;
+  transition: background .2s, transform .2s;
+}
+.btn:hover { background: #8f73ff; transform: translateY(-2px); }
+
+/* Bagian umum */
+.block { padding: clamp(72px, 12vw, 140px) var(--gutter); border-top: 1px solid var(--line); max-width: 1200px; margin: 0 auto; }
+h2 { font-family: "Syne", sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3.2rem); margin: 0 0 40px; letter-spacing: -.02em; }
+h3 { font-size: 1.1rem; margin: 0 0 8px; }
+
+.cols { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; }
+.cols p { margin: 0; max-width: 60ch; color: var(--muted); font-size: 1.1rem; }
+.facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.facts strong { display: block; color: var(--text); font-size: .9rem; }
+.facts li { color: var(--muted); }
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
+.skills p { margin: 0; color: var(--muted); }
+
+/* Proyek */
+.projects { list-style: none; margin: 0; padding: 0; }
+.projects li { border-bottom: 1px solid var(--line); }
+.projects a {
+  display: grid; grid-template-columns: 1fr 1.4fr auto; gap: 24px; align-items: baseline;
+  padding: 26px 0; text-decoration: none; transition: padding .25s, color .2s;
+}
+.projects a:hover { padding-left: 14px; color: var(--aqua); }
+.p-name { font-family: "Syne", sans-serif; font-weight: 600; font-size: 1.4rem; }
+.p-desc { color: var(--muted); }
+.p-tech { color: var(--violet); font-size: .9rem; white-space: nowrap; }
+
+/* Kontak */
+.contact-lead { color: var(--muted); max-width: 52ch; margin: 0 0 28px; }
+.social { list-style: none; display: flex; gap: 24px; padding: 0; margin: 36px 0 0; }
+.social a { color: var(--muted); text-underline-offset: 4px; }
+.social a:hover { color: var(--text); }
+
+footer { padding: 32px var(--gutter); border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+footer p { margin: 0; }
+
+@media (max-width: 720px) {
+  .cols { grid-template-columns: 1fr; gap: 28px; }
+  .projects a { grid-template-columns: 1fr; gap: 6px; }
+  .nav nav a:nth-child(-n+2) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
